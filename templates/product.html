@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>{{.Name}} — StreetShop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="nav">
+            <img src="/assets/image/logo.png" alt="Logo StreetShop" class="logo">
+            <nav>
+                <a href="/">Accueil</a>
+                <a href="/add">Ajouter un produit</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Produit -->
+    <main>
+        <section class="product-detail">
+            <div class="product-image">
+                <img src="{{.Image}}" alt="{{.Name}}">
+            </div>
+            <div class="product-info">
+                <h1>{{.Name}}</h1>
+                <p class="description">{{.Description}}</p>
+
+                <div class="price-section">
+                    <span class="price">{{printf "%.2f" .FinalPrice}} €</span>
+                    {{if .Discount}}
+                        <span class="old-price">{{printf "%.2f" .Price}} €</span>
+                        <span class="discount-tag">-{{.Discount}}%</span>
+                    {{end}}
+                </div>
+
+                <p class="stock">Stock disponible : {{.Stock}}</p>
+
+                <a href="/" class="btn">Retour à l'accueil</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2025 StreetShop — Tous droits réservés</p>
+        <p>Contact : <a href="mailto:amouroux.matheo04@gmail.com">amouroux.matheo04@gmail.com</a></p>
+    </footer>
+</body>
+</html>
