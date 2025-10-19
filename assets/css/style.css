@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -7,208 +6,244 @@
 }
 
 body {
-    background-color: #f5f5f5;
-    color: #111;
+    background-color: #121212;
+    color: #f5f5f5;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 header {
-    background-color: #111;
-    padding: 10px 30px;
+    background-color: #1e1e1e;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .logo {
-    height: 45px;
+    width: 60px;
+    height: auto;
+    margin-right: 20px;
 }
 
 nav a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    margin-left: 25px;
+    margin-left: 20px;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 nav a:hover,
 nav a.active {
-    color: #ddd;
+    color: #00bcd4;
 }
+
 main {
     flex: 1;
-    padding: 50px 20px;
+    padding: 40px 60px;
+    animation: fadeIn 0.8s ease;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 40px;
     font-size: 2rem;
-    color: #111;
+    letter-spacing: 1px;
 }
 
 .products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 30px;
 }
 
 .card {
-    background: white;
+    background: #1c1c1c;
     border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     overflow: hidden;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 .card img {
     width: 100%;
-    height: 280px;
+    height: 260px;
     object-fit: cover;
 }
 
 .card-content {
-    padding: 15px 20px;
+    padding: 20px;
 }
 
-.card h2 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+.card-content h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
 }
 
-.card p {
-    font-size: 0.9rem;
-    color: #555;
+.card-content p {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 15px;
 }
 
 .price {
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-top: 10px;
-    color: #000;
+    color: #00bcd4;
 }
 
 .discount {
-    color: red;
-    font-weight: bold;
-    margin-left: 10px;
+    background-color: #ff5252;
+    color: white;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    border-radius: 5px;
+    margin-left: 5px;
 }
 
-
-.product-details {
-    max-width: 800px;
+.product-detail {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
     margin: 0 auto;
-    background: white;
+}
+
+.product-image img {
+    width: 400px;
     border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 30px;
 }
 
-.product-details img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 20px;
+.product-info {
+    max-width: 400px;
 }
 
-.product-details h2 {
+.product-info h1 {
     font-size: 1.8rem;
     margin-bottom: 15px;
 }
 
-.product-details p {
-    color: #555;
-    line-height: 1.6;
+.description {
+    color: #ccc;
     margin-bottom: 20px;
 }
+
+.price-section {
+    margin-bottom: 15px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 10px;
+}
+
+.discount-tag {
+    background-color: #ff5252;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 5px;
+    margin-left: 8px;
+    font-size: 0.9rem;
+}
+
+.stock {
+    margin-bottom: 25px;
+    color: #bdbdbd;
+}
+
+.btn {
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0097a7;
+}
+
 .add-section {
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background-color: #1c1c1c;
     padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.add-section h1 {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .add-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 
 .add-form label {
-    font-weight: 600;
+    margin-bottom: 6px;
+    font-weight: 500;
 }
 
 .add-form input,
 .add-form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
+    background-color: #222;
+    color: white;
+    border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 15px;
+    resize: none;
 }
 
 .add-form input:focus,
 .add-form textarea:focus {
-    outline: none;
-    border-color: #111;
-}
-
-.btn {
-    background-color: #111;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background-color: #333;
+    outline: 2px solid #00bcd4;
 }
 
 footer {
-    background-color: #111;
-    color: white;
+    background-color: #1e1e1e;
     text-align: center;
-    padding: 25px 10px;
+    padding: 20px 0;
+    margin-top: 40px;
+    color: #fff;
     font-size: 0.9rem;
-    margin-top: auto;
 }
 
 footer a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    font-weight: 500;
+    transition: color 0.3s;
 }
 
 footer a:hover {
-    text-decoration: underline;
+    color: #00bcd4;
 }
 
-@media (max-width: 600px) {
-    .nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .logo {
-        height: 40px;
-    }
-
-    nav a {
-        margin-left: 0;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
+
