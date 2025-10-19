@@ -120,7 +120,7 @@ func addSubmitHandler(w http.ResponseWriter, r *http.Request) {
 		Price:       price,
 		Discount:    discount,
 		Stock:       stock,
-		Image:       "/assets/image/16A.webp", // image par défaut
+		Image:       "/assets/image/16A.webp", 
 	}
 
 	products = append(products, newProduct)
@@ -135,6 +135,6 @@ func main() {
 	http.HandleFunc("/add", addHandler)
 	http.HandleFunc("/add/submit", addSubmitHandler)
 
-	log.Println("✅ Serveur démarré sur : http://localhost:8000")
+	log.Println("Serveur démarré sur : http://localhost:8000")
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }
