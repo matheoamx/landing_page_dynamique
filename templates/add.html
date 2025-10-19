@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Ajouter un produit — StreetShop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="nav">
+            <img src="/assets/image/logo.png" alt="Logo" class="logo">
+            <nav>
+                <a href="/">Accueil</a>
+                <a href="/add" class="active">Ajouter un produit</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Formulaire d’ajout -->
+    <main>
+        <section class="add-section">
+            <h1>Ajouter un nouveau produit</h1>
+            <form action="/add/submit" method="POST" class="add-form">
+
+                <label for="name">Nom du produit *</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="description">Description *</label>
+                <textarea id="description" name="description" rows="3" required></textarea>
+
+                <label for="price">Prix (€) *</label>
+                <input type="number" id="price" name="price" step="0.01" required>
+
+                <label for="stock">Stock *</label>
+                <input type="number" id="stock" name="stock" required>
+
+                <label for="discount">Réduction (%)</label>
+                <input type="number" id="discount" name="discount" placeholder="ex: 10">
+
+                <button type="submit" class="btn">Ajouter le produit</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2025 StreetShop — Tous droits réservés</p>
+        <p>Contact : <a href="mailto:amouroux.matheo04@gmail.com">amouroux.matheo04@gmail.com</a></p>
+    </footer>
+</body>
+</html>
