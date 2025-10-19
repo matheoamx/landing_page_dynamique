@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <title>Ajouter un produit — StreetShop</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un produit - StreetShop</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" type="image/png" href="/assets/image/logo.png">
 </head>
 <body>
-    <!-- En-tête -->
     <header>
-        <div class="nav">
-            <img src="/assets/image/logo.png" alt="Logo" class="logo">
-            <nav>
-                <a href="/">Accueil</a>
-                <a href="/add" class="active">Ajouter un produit</a>
-            </nav>
+        <div class="logo">
+            <img src="/assets/image/logo.png" alt="Logo StreetShop">
         </div>
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/add">Ajouter un produit</a>
+        </nav>
     </header>
 
-    <!-- Formulaire d’ajout -->
     <main>
-        <section class="add-section">
-            <h1>Ajouter un nouveau produit</h1>
-            <form action="/add/submit" method="POST" class="add-form">
+        <h1>Ajouter un nouveau produit</h1>
+        <form action="/add/submit" method="POST" class="form-add">
+            <label>Nom :</label>
+            <input type="text" name="name" required>
 
-                <label for="name">Nom du produit *</label>
-                <input type="text" id="name" name="name" required>
+            <label>Description :</label>
+            <textarea name="description"></textarea>
 
-                <label for="description">Description *</label>
-                <textarea id="description" name="description" rows="3" required></textarea>
+            <label>Prix (€) :</label>
+            <input type="number" step="0.01" name="price" required>
 
-                <label for="price">Prix (€) *</label>
-                <input type="number" id="price" name="price" step="0.01" required>
+            <label>Stock :</label>
+            <input type="number" name="stock" required>
 
-                <label for="stock">Stock *</label>
-                <input type="number" id="stock" name="stock" required>
+            <label>Réduction (%) :</label>
+            <input type="number" name="discount">
 
-                <label for="discount">Réduction (%)</label>
-                <input type="number" id="discount" name="discount" placeholder="ex: 10">
-
-                <button type="submit" class="btn">Ajouter le produit</button>
-            </form>
-        </section>
+            <button type="submit" class="btn">Ajouter le produit</button>
+        </form>
     </main>
 
-    <!-- Pied de page -->
     <footer>
         <p>© 2025 StreetShop — Tous droits réservés</p>
-        <p>Contact : <a href="mailto:amouroux.matheo04@gmail.com">amouroux.matheo04@gmail.com</a></p>
-    </footer>
-</body>
-</html>
+        <div class="socials">
+            <a href="#">Instagram</a> • 
+            <a href="#">Twitter</a> • 
+           
+
