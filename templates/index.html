@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>StreetShop — Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <!-- En-tête -->
+    <header>
+        <div class="nav">
+            <img src="/assets/image/logo.png" alt="Logo StreetShop" class="logo">
+            <nav>
+                <a href="/" class="active">Accueil</a>
+                <a href="/add">Ajouter un produit</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <h1>Nos produits</h1>
+        <section class="products">
+            {{range .}}
+            <div class="card">
+                <a href="/product?id={{.ID}}">
+                    <img src="{{.Image}}" alt="{{.Name}}">
+                </a>
+                <div class="card-content">
+                    <h2>{{.Name}}</h2>
+                    <p>{{.Description}}</p>
+                    <div class="price">
+                        {{printf "%.2f" .FinalPrice}} €
+                        {{if .Discount}}
+                            <span class="discount">-{{.Discount}}%</span>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </section>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2025 StreetShop — Tous droits réservés</p>
+        <p>Contact : <a href="mailto:amouroux.matheo04@gmail.com">amouroux.matheo04@gmail.com</a></p>
+    </footer>
+</body>
+</html>
