@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-// Product représente un article vendu sur le site
+// Structure d’un produit
 type Product struct {
 	ID          int
 	Name        string
@@ -18,7 +18,7 @@ type Product struct {
 	Image       string
 }
 
-// Méthode pour calculer le prix final si réduction
+// Calcul du prix final après remise
 func (p Product) FinalPrice() float64 {
 	if p.Discount != nil {
 		return p.Price * (1 - float64(*p.Discount)/100)
@@ -26,7 +26,7 @@ func (p Product) FinalPrice() float64 {
 	return p.Price
 }
 
-// Liste de produits affichés sur la page d’accueil
+// Données simulées (liste initiale de produits)
 var products = []Product{
 	{1, "Sweat à capuche vert clair", "Sweat confortable en coton bio, coupe oversize.", 49.99, nil, 12, "/assets/image/16A.webp"},
 	{2, "Sweat noir graphique", "Sweat noir avec imprimé urbain, édition limitée.", 59.99, func() *int { d := 15; return &d }(), 5, "/assets/image/18A.webp"},
@@ -37,10 +37,10 @@ var products = []Product{
 	{7, "Jean large bleu clair", "Jean coupe baggy, teinte bleu clair.", 79.90, nil, 7, "/assets/image/34B.webp"},
 }
 
-// Chargement des templates HTML
+// Chargement des templates
 var templates = template.Must(template.ParseGlob("templates/*.html"))
 
-// Route page d’accueil
+// Page d’accueil
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	err := templates.ExecuteTemplate(w, "index.html", products)
 	if err != nil {
@@ -48,7 +48,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Route d’affichage d’un produit (ex: /product?id=2)
+// Page de détail produit
 func productHandler(w http.ResponseWriter, r *http.Request) {
 	idStr := r.URL.Query().Get("id")
 	if idStr == "" {
@@ -75,14 +75,66 @@ func productHandler(w http.ResponseWriter, r *http.Request) {
 	http.NotFound(w, r)
 }
 
-func main() {
-	// Sert les fichiers statiques (CSS, images…)
-	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+// Formulaire d’ajout de produit
+func addHandler(w http.ResponseWriter, r *http.Request) {
+	err := templates.ExecuteTemplate(w, "add.html", nil)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
 
-	// Routes principales
+// Traitement du formulaire d’ajout
+func addSubmitHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	name := r.FormValue("name")
+	description := r.FormValue("description")
+	priceStr := r.FormValue("price")
+	stockStr := r.FormValue("stock")
+	discountStr := r.FormValue("discount")
+
+	if name == "" || priceStr == "" || stockStr == "" {
+		http.Error(w, "Veuillez remplir tous les champs obligatoires.", http.StatusBadRequest)
+		return
+	}
+
+	price, _ := strconv.ParseFloat(priceStr, 64)
+	stock, _ := strconv.Atoi(stockStr)
+
+	var discount *int
+	if discountStr != "" {
+		if d, err := strconv.Atoi(discountStr); err == nil {
+			discount = &d
+		}
+	}
+
+	id := len(products) + 1
+
+	newProduct := Product{
+		ID:          id,
+		Name:        name,
+		Description: description,
+		Price:       price,
+		Discount:    discount,
+		Stock:       stock,
+		Image:       "/assets/image/16A.webp", // image par défaut
+	}
+
+	products = append(products, newProduct)
+
+	http.Redirect(w, r, "/product?id="+strconv.Itoa(id), http.StatusSeeOther)
+}
+
+func main() {
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/product", productHandler)
+	http.HandleFunc("/add", addHandler)
+	http.HandleFunc("/add/submit", addSubmitHandler)
 
-	log.Println("Serveur démarré sur : http://localhost:8000")
+	log.Println("✅ Serveur démarré sur : http://localhost:8000")
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }
